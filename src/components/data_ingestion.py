@@ -26,6 +26,9 @@ class DataIngestion:
             collection = mongo_client[db_name][collection_name]
             df = pd.DataFrame(list(collection.find()))
             
+            if "_id" in df.columns.to_list():
+                df = df.drop(columns=["_id"], axis=1)
+            
             return df
         
         except Exception as e:
