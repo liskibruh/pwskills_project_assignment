@@ -9,6 +9,8 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils.main_utils import MainUtils
 from dataclasses import dataclass
+import certifi
+ca = certifi.where()
 
 @dataclass
 class DataIngestionConfig:
@@ -21,8 +23,8 @@ class DataIngestion:
         
     def export_collection_as_dataframe(self,collection_name, db_name):
         try:
-            mongo_client = MongoClient("mongodb+srv://liskibruh:liskibruh@cluster0.t5rayhz.mongodb.net/?retryWrites=true&w=majority")
-            
+            mongo_client = MongoClient("mongodb+srv://liskibruh:liskibruh8811@cluster0.t5rayhz.mongodb.net/?retryWrites=true&w=majority",tlsCAFile=ca)
+            #mongo_client = MongoClient("mongodb+srv://liskibruh:liskibruh@cluster0.t5rayhz.mongodb.net/?retryWrites=true&w=majority")
             collection = mongo_client[db_name][collection_name]
             df = pd.DataFrame(list(collection.find()))
             
