@@ -71,7 +71,7 @@ class PredictionPipeline:
         except Exception as e:
             raise CustomException(e,sys)
         
-        
+     #run pipeline   
     def run_pipeline(self):
         try:
             input_csv_path = self.save_input_files()
